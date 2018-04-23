@@ -1,0 +1,402 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--引入 Vue-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<style>
+*{ margin: 0;padding: 0;}
+body{ margin: 30px;}
+#gonglue{ width:375px;}
+#gonglue li{ margin: 10px 0; list-style: none; overflow: hidden; position: relative;}
+#gonglue li img{ width: 120px; height: 80px; margin-right:10px ; float: left;}
+#gonglue li h3{ height: 48px; line-height: 24px; font-size: 16px; font-weight: 600; overflow: hidden;}
+#gonglue li p{height: 20px;line-height: 20px;font-size: 14px;color: #666; position: absolute; bottom: 0; left: 130px;}
+
+.guide-list p span {
+    display: inline-block;
+    margin-right: 20px;
+}
+.guide-list .location i, .guide-list .view i {
+    margin-right: 5px;
+    display: inline-block;
+    width: 14px;
+    height: 20px;
+    background: url(http://css.mafengwo.net/images/sales/icon-guide.png) no-repeat 0 0;
+    vertical-align: middle;
+}
+.guide-list .view i {
+    margin-top: 1px;
+    width: 18px;
+    height: 14px;
+    height: 20px;
+    background-position: -20px 0;
+}
+</style>
+</head>
+<body>
+
+<div id="gonglue" class="guide-list">
+    <ul>
+        <li v-for="item in gonglue">
+            <img :src="item.img +'?imageView2%2F2%2Fw%2F240%2Fq%2F90'" width="120" height="80">
+            <h3>{{ item.title }}</h3>
+            <p><span class="location"><i></i>{{ item.location }}</span><span class="view"><i></i>{{ item.view }}</span></p>
+        </li>
+    </u>
+</div>
+<script>
+var app4 = new Vue({
+  el: '#gonglue',
+  data: {
+    gonglue: {
+                "347": {
+                    "url": "/gonglve/ziyouxing/347.html",
+                    "img": "http://b1-q.mafengwo.net/s9/M00/67/60/wKgBs1ee6KGAHZbFAA-Slm_nKZ089.jpeg",
+                    "ty": "239人体验过",
+                    "title": "川西朝圣之旅线路大集锦（含色达、贡嘎、徳格、四姑娘山、稻城亚丁）",
+                    "location": "川西",
+                    "view": "118654"
+                },
+                "349": {
+                    "url": "/gonglve/ziyouxing/349.html",
+                    "img": "http://n1-q.mafengwo.net/s9/M00/FB/7C/wKgBs1etfBqANVRaAAft5B_qYyE20.jpeg",
+                    "ty": "315人体验过",
+                    "title": "九寨沟到底怎么玩？看这里！（附经典四日行程推荐）",
+                    "location": "九寨沟",
+                    "view": "240772"
+                },
+                "413": {
+                    "url": "/gonglve/ziyouxing/413.html",
+                    "img": "http://b4-q.mafengwo.net/s9/M00/C4/98/wKgBs1fFaUOAWYHsAAsHF53jKKQ58.jpeg",
+                    "ty": "1.6万人体验过",
+                    "title": "玩儿遍四川不是梦，大四川出行之交通全攻略",
+                    "location": "四川",
+                    "view": "160244"
+                },
+                "432": {
+                    "url": "/gonglve/ziyouxing/432.html",
+                    "img": "http://n3-q.mafengwo.net/s9/M00/15/C9/wKgBs1fH9GiAJXORAAM7MRLp_qw36.jpeg",
+                    "ty": "75人体验过",
+                    "title": "摄影天堂——新都桥及周边游玩全攻略",
+                    "location": "新都桥",
+                    "view": "33884"
+                },
+                "450": {
+                    "url": "/gonglve/ziyouxing/450.html",
+                    "img": "http://c2-q.mafengwo.net/s8/M00/B3/CC/wKgBpVYfVPmADLlsAAsoAU9WkB432.jpeg",
+                    "ty": "78人体验过",
+                    "title": "这么美，泸沽湖最适合“想静静”！",
+                    "location": "泸沽湖",
+                    "view": "128193"
+                },
+                "576": {
+                    "url": "/gonglve/ziyouxing/576.html",
+                    "img": "http://b4-q.mafengwo.net/s9/M00/45/1D/wKgBs1gJrcSATZ4lADXI1MuXf7s83.jpeg",
+                    "ty": "1018人体验过",
+                    "title": "峨眉山怎么玩？吃喝玩乐防坑最全攻略！ （附峨眉山、乐山推荐路线）",
+                    "location": "峨眉山",
+                    "view": "91567"
+                },
+                "582": {
+                    "url": "/gonglve/ziyouxing/582.html",
+                    "img": "http://n1-q.mafengwo.net/s9/M00/54/03/wKgBs1gFz0eAVP3AAAELjrT58Do37.jpeg",
+                    "ty": "110人体验过",
+                    "title": "东方圣山&户外天堂——你必须知道的四姑娘山怎么玩！",
+                    "location": "四姑娘山",
+                    "view": "18970"
+                },
+                "591": {
+                    "url": "/gonglve/ziyouxing/591.html",
+                    "img": "http://a2-q.mafengwo.net/s6/M00/6A/55/wKgB4lJpIFGAHTvdABAGf3Q9fC426.jpeg",
+                    "ty": "7人体验过",
+                    "title": "不走寻常路，兰州出发的九寨探索！(附多种路线安排）",
+                    "location": "兰州",
+                    "view": "16086"
+                },
+                "624": {
+                    "url": "/gonglve/ziyouxing/624.html",
+                    "img": "http://c4-q.mafengwo.net/s9/M00/53/E1/wKgBs1gQrraAf-LpABmBS5mnkck521.png",
+                    "ty": "193人体验过",
+                    "title": "毕棚沟太漂亮，看完就想去！成都出发只要2天！",
+                    "location": "毕棚沟",
+                    "view": "57071"
+                },
+                "639": {
+                    "url": "/gonglve/ziyouxing/639.html",
+                    "img": "http://b1-q.mafengwo.net/s5/M00/C5/16/wKgB3FE2x8yAQnIHAAgS9_L1VpE23.jpeg",
+                    "ty": "296人体验过",
+                    "title": "不要高反还想看冰川？来海螺沟啊！",
+                    "location": "海螺沟",
+                    "view": "33146"
+                },
+                "663": {
+                    "url": "/gonglve/ziyouxing/663.html",
+                    "img": "http://n3-q.mafengwo.net/s9/M00/DB/A3/wKgBs1aiMFCAbGhIAA_ibL3i9_g38.jpeg",
+                    "title": "两天时间四种方式，让你玩转毕棚沟！（附二日路线）",
+                    "location": "毕棚沟",
+                    "view": "33990"
+                },
+                "812": {
+                    "url": "/gonglve/ziyouxing/812.html",
+                    "img": "http://b4-q.mafengwo.net/s6/M00/23/5A/wKgB4lMVfDOAVXLRABHKrQnphGo55.jpeg",
+                    "ty": "2494人体验过",
+                    "title": "人少景美？冬日九寨沟给你一场冰雪奇缘！",
+                    "location": "九寨沟",
+                    "view": "27787"
+                },
+                "815": {
+                    "url": "/gonglve/ziyouxing/815.html",
+                    "img": "http://b2-q.mafengwo.net/s9/M00/1B/D0/wKgBs1g77WuAO3jgAAeiG0GgzQw320.png",
+                    "ty": "82人体验过",
+                    "title": "滑雪温泉两不误，成都周边的冷暖体验等你来挑战！",
+                    "location": "成都",
+                    "view": "76398"
+                },
+                "872": {
+                    "url": "/gonglve/ziyouxing/872.html",
+                    "img": "http://n4-q.mafengwo.net/s5/M00/29/9E/wKgB3FEtbNWAZQdSAADjCb7dgyU63.jpeg",
+                    "ty": "272人体验过",
+                    "title": "谁说成都不能看雪？西岭雪山让你看山看云又看雪~（附路线推荐）",
+                    "location": "西岭雪山",
+                    "view": "13921"
+                },
+                "938": {
+                    "url": "/gonglve/ziyouxing/938.html",
+                    "img": "http://b4-q.mafengwo.net/s7/M00/20/52/wKgB6lPxwkeATV_CAA-gWJYixJE51.jpeg",
+                    "ty": "35人体验过",
+                    "title": "世人都说蜀道难？走！去剑门关揭个秘！",
+                    "location": "剑门关",
+                    "view": "7138"
+                },
+                "1022": {
+                    "url": "/gonglve/ziyouxing/1022.html",
+                    "img": "http://n1-q.mafengwo.net/s9/M00/C1/8A/wKgBs1cMryqAUPbuABwugfYtCh070.jpeg",
+                    "title": "深入川北秘境，踏寻九黄东线，揭秘白马王朗~（附路线推荐）",
+                    "location": "川北",
+                    "view": "6776"
+                },
+                "1055": {
+                    "url": "/gonglve/ziyouxing/1055.html",
+                    "img": "http://a3-q.mafengwo.net/s9/M00/E7/9B/wKgBs1hFMIKAEi5XAAd7N2cGBWw744.png",
+                    "title": "成都有哪些游客没听过、当地人却经常前往的火锅店？",
+                    "location": "成都",
+                    "view": "25611"
+                },
+                "1058": {
+                    "url": "/gonglve/ziyouxing/1058.html",
+                    "img": "http://n2-q.mafengwo.net/s9/M00/22/EC/wKgBs1hH70mAO87hABVlc_gstVg30.jpeg",
+                    "title": "成都主题乐园大汇总！大人孩子爽翻天！",
+                    "location": "成都",
+                    "view": "5660"
+                },
+                "1154": {
+                    "url": "/gonglve/ziyouxing/1154.html",
+                    "img": "http://n1-q.mafengwo.net/s9/M00/97/A9/wKgBs1hI1OSAF4_xAACm4aPnxno65.jpeg",
+                    "ty": "2906人体验过",
+                    "title": "在成都IFS、太古里快耍慢活！",
+                    "location": "成都",
+                    "view": "20044"
+                },
+                "1160": {
+                    "url": "/gonglve/ziyouxing/1160.html",
+                    "img": "http://n4-q.mafengwo.net/s9/M00/10/8A/wKgBs1hI_z6AN-_jAAK5cX_PlO837.jpeg",
+                    "ty": "70人体验过",
+                    "title": "关于九寨沟内住宿，你还不知道的那些事儿！",
+                    "location": "九寨沟",
+                    "view": "20875"
+                },
+                "1256": {
+                    "url": "/gonglve/ziyouxing/1256.html",
+                    "img": "http://b1-q.mafengwo.net/s9/M00/9D/1C/wKgBs1hOPIaAcNLMAAis2ulIQjo66.jpeg",
+                    "title": "成都周边露营地推荐，大美川西等你来野！",
+                    "location": "成都",
+                    "view": "6326"
+                },
+                "1475": {
+                    "url": "/gonglve/ziyouxing/1475.html",
+                    "img": "http://a2-q.mafengwo.net/s9/M00/13/49/wKgBs1hTr9aAb0nmAALRev8zaTg27.jpeg",
+                    "ty": "165人体验过",
+                    "title": "最精简最干货的四川宜宾蜀南竹海攻略",
+                    "location": "蜀南竹海",
+                    "view": "3629"
+                },
+                "1493": {
+                    "url": "/gonglve/ziyouxing/1493.html",
+                    "img": "http://a3-q.mafengwo.net/s9/M00/1D/FB/wKgBs1hTx-OAfCGzAAEcctx6Or033.jpeg",
+                    "title": "追寻熊猫足迹，去四川寻访神秘的白马王朗",
+                    "location": "白马王朗",
+                    "view": "1955"
+                },
+                "1502": {
+                    "url": "/gonglve/ziyouxing/1502.html",
+                    "img": "http://c1-q.mafengwo.net/s9/M00/EB/62/wKgBs1hbUtuAHY5eADG5H8r6hhM45.jpeg",
+                    "ty": "239人体验过",
+                    "title": "冬季朝圣之路——走进雪域佛国色达",
+                    "location": "色达",
+                    "view": "17256"
+                },
+                "1625": {
+                    "url": "/gonglve/ziyouxing/1625.html",
+                    "img": "http://n4-q.mafengwo.net/s9/M00/E2/37/wKgBs1hbQmyAYE95AARq_Q042D405.jpeg",
+                    "title": "川西以北丨让我们去若尔盖撒个野！",
+                    "location": "若尔盖",
+                    "view": "9080"
+                },
+                "1628": {
+                    "url": "/gonglve/ziyouxing/1628.html",
+                    "img": "http://c3-q.mafengwo.net/s9/M00/EB/09/wKgBs1hbUeWAXyz8AAXV3xGlFYs98.jpeg",
+                    "ty": "3251人体验过",
+                    "title": "初到四川丨如何在短时间内科学玩转必打卡景点？",
+                    "location": "四川",
+                    "view": "39432"
+                },
+                "1664": {
+                    "url": "/gonglve/ziyouxing/1664.html",
+                    "img": "http://a1-q.mafengwo.net/s9/M00/76/F5/wKgBs1hcv-6ACQAGAAk38HQTnMM22.jpeg",
+                    "ty": "34人体验过",
+                    "title": "稻城亚丁，从你的全世界路过（附多种游玩行程）",
+                    "location": "稻城亚丁",
+                    "view": "53222"
+                },
+                "1685": {
+                    "url": "/gonglve/ziyouxing/1685.html",
+                    "img": "http://a1-q.mafengwo.net/s9/M00/BA/99/wKgBs1hgiwiAFLaEAAJD4CxI9SI97.jpeg",
+                    "ty": "35人体验过",
+                    "title": "九寨沟的冬天，一样那么美（附九环线自驾路线推荐）",
+                    "location": "九寨沟",
+                    "view": "24704"
+                },
+                "1691": {
+                    "url": "/gonglve/ziyouxing/1691.html",
+                    "img": "http://b1-q.mafengwo.net/s9/M00/E1/31/wKgBs1hg1BmAee1wABl9iR0gteQ30.jpeg",
+                    "ty": "1人体验过",
+                    "title": "第一次游四姑娘山必看，三条沟四座山搞清楚了再出发",
+                    "location": "四姑娘山",
+                    "view": "19830"
+                },
+                "1748": {
+                    "url": "/gonglve/ziyouxing/1748.html",
+                    "img": "http://c1-q.mafengwo.net/s9/M00/EE/B9/wKgBs1hjLhaAGWk2AHOycUHszMk149.gif",
+                    "ty": "90人体验过",
+                    "title": "雪山之旅丨我在川西翻山越岭",
+                    "location": "贡嘎",
+                    "view": "8136"
+                },
+                "1787": {
+                    "url": "/gonglve/ziyouxing/1787.html",
+                    "img": "http://c4-q.mafengwo.net/s9/M00/35/CD/wKgBs1hjrvSAMefuAAWvbRM_Css61.jpeg",
+                    "title": "伴手礼丨成都有哪些易保存易携带的特色伴手礼？",
+                    "location": "成都",
+                    "view": "10528"
+                },
+                "1826": {
+                    "url": "/gonglve/ziyouxing/1826.html",
+                    "img": "http://b2-q.mafengwo.net/s9/M00/CF/6B/wKgBs1hrD-WABlSmAAatsV3A7lA82.jpeg",
+                    "ty": "14人体验过",
+                    "title": "《卧虎藏龙》《十面埋伏》取景地丨玩转蜀南竹海全攻略",
+                    "location": "蜀南竹海",
+                    "view": "54423"
+                },
+                "1919": {
+                    "url": "/gonglve/ziyouxing/1919.html",
+                    "img": "http://b4-q.mafengwo.net/s9/M00/2E/91/wKgBs1fKqjmAHdFIABl-Evzr5hU16.jpeg",
+                    "ty": "10人体验过",
+                    "title": "川西丨三天时间，让你玩转川西小环线！",
+                    "location": "川西",
+                    "view": "42148"
+                },
+                "1985": {
+                    "url": "/gonglve/ziyouxing/1985.html",
+                    "img": "http://b3-q.mafengwo.net/s10/M00/EB/B6/wKgBZ1h1niKAdgluAARxh--xb5Y44.jpeg",
+                    "ty": "1人体验过",
+                    "title": "川西朝圣之旅（附十一日深度朝圣之旅线路）",
+                    "location": "色达",
+                    "view": "11041"
+                },
+                "2021": {
+                    "url": "/gonglve/ziyouxing/2021.html",
+                    "img": "http://a4-q.mafengwo.net/s10/M00/D2/2E/wKgBZ1h3KACAOvvAABJo9SAQoqI10.jpeg",
+                    "ty": "164人体验过",
+                    "title": "徒步稻城亚丁丨用脚步丈量川西深处的天堂",
+                    "location": "稻城亚丁",
+                    "view": "30072"
+                },
+                "2135": {
+                    "url": "/gonglve/ziyouxing/2135.html",
+                    "img": "http://n3-q.mafengwo.net/s10/M00/E2/CF/wKgBZ1h_Rf6AKrQlAFr_mo9ULl429.jpeg",
+                    "ty": "83人体验过",
+                    "title": "甘南到底是什么地方？跨青甘川的大甘南旅游攻略在此！",
+                    "location": "甘南",
+                    "view": "15511"
+                },
+                "2264": {
+                    "url": "/gonglve/ziyouxing/2264.html",
+                    "img": "http://n1-q.mafengwo.net/s10/M00/20/C3/wKgBZ1ib2YCAQ8B_AAIWhK4kQH877.jpeg",
+                    "ty": "151人体验过",
+                    "title": "你不可错过的川西春色·金川万亩梨花",
+                    "location": "川西",
+                    "view": "17217"
+                },
+                "2276": {
+                    "url": "/gonglve/ziyouxing/2276.html",
+                    "img": "http://n4-q.mafengwo.net/s10/M00/7B/56/wKgBZ1icOCyAP1j-AAHBjz5gnBI78.jpeg",
+                    "ty": "6579人体验过",
+                    "title": "2017年必须要去的国内八大最美古镇！",
+                    "location": "西江",
+                    "view": "291481"
+                },
+                "2570": {
+                    "url": "/gonglve/ziyouxing/2570.html",
+                    "img": "http://c1-q.mafengwo.net/s5/M00/40/EE/wKgB3FH2cxqAMIm2AAde41gXx8w67.jpeg",
+                    "title": "童话世界九寨沟，寻觅九寨千古情（附必游景点、住宿指南、行程推荐）",
+                    "location": "九寨沟",
+                    "view": "3281"
+                },
+                "2573": {
+                    "url": "/gonglve/ziyouxing/2573.html",
+                    "img": "http://n1-q.mafengwo.net/s10/M00/BD/10/wKgBZ1iwFJ6AZVnwAAOtYb-B1-U47.jpeg",
+                    "ty": "2人体验过",
+                    "title": "从康定到色达，一路虔诚一路祥和，给自己一场沉淀之旅",
+                    "location": "色达",
+                    "view": "8317"
+                },
+                "2801": {
+                    "url": "/gonglve/ziyouxing/2801.html",
+                    "img": "http://a1-q.mafengwo.net/s9/M00/48/09/wKgBs1gcJxqAN_kWAARJnMJBVFQ37.jpeg",
+                    "ty": "1.1万人体验过",
+                    "title": "2017最萌指南丨成都大熊猫基地游玩全攻略！",
+                    "location": "成都",
+                    "view": "15345"
+                },
+                "2855": {
+                    "url": "/gonglve/ziyouxing/2855.html",
+                    "img": "http://b4-q.mafengwo.net/s10/M00/08/5F/wKgBZ1jBLMeAQDCyAASYuufJ_G856.jpeg",
+                    "ty": "1420人体验过",
+                    "title": "如果一生只去1次九寨沟，必须这样玩才不留遗憾",
+                    "location": "九寨沟",
+                    "view": "29928"
+                },
+                "2966": {
+                    "url": "/gonglve/ziyouxing/2966.html",
+                    "img": "http://n2-q.mafengwo.net/s10/M00/D1/0F/wKgBZ1jHhj2AZYxcAAZLql_dAdU20.jpeg",
+                    "title": "成都这一片《三生三世》同款桃花林，藏着今年最美的春色",
+                    "location": "成都",
+                    "view": "4930"
+                },
+                "3050": {
+                    "url": "/gonglve/ziyouxing/3050.html",
+                    "img": "http://b3-q.mafengwo.net/s10/M00/A3/CE/wKgBZ1jKVySAKK3IAAXKWi-fBqc46.jpeg",
+                    "title": "成都周边的黄龙溪古镇，感受川西的水乡风情",
+                    "location": "成都",
+                    "view": "3286"
+                }
+            }
+  }
+})
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Class 与 Style 绑定</title>
+</head>
+<body>
+引入 Vue
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+对象语法
+
+v-bind:style 的对象语法十分直观——看着非常像 CSS ，其实它是一个 JavaScript 对象。 CSS 属性名可以用驼峰式 (camelCase) 或 (配合引号的) 短横分隔命名 (kebab-case)：
+
+<div id="app">
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">Style 绑定</div>
+    
+    <div v-bind:style="{backgroundImage: 'url('+bg+')'}">Image 绑定</div>
+    <div :style="{backgroundImage: 'url(https://cn.vuejs.org/images/logo.png)', width: '200px', height: '200px'}">foo</div>
+</div>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    activeColor: 'red',
+    fontSize: 30,
+    bg: "http://www.ctsscs.com/files/2014-2/c20140211104418160101.jpg"
+  }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue.js 起步</title>
+</head>
+<body>
+Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。
+
+引入 Vue
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+
+
+<h2>【声明式渲染】</h2>
+Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统：
+
+<div id="app">
+  {{ message }}
+</div>
+
+绑定插入的文本内容
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue! 啦啦啦'
+  }
+})
+</script>
+
+
+
+<br><br>================================<br><br>
+<h2>【指令】</h2>
+
+除了文本插值，我们还可以像这样来绑定元素特性：
+<div id="app-2">
+  <span v-bind:title="message">
+     鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+
+<script>
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    //message: 'You loaded this page on ' + new Date()
+    message: '页面加载于 ' + new Date().toLocaleString()
+  }
+})
+</script>
+
+<br><br>
+这里我们遇到了一点新东西。<br>
+v-bind 属性被称为指令。 指令带有前缀 v-，
+含义是说：将这个元素节点的 title 属性和 Vue 实例的 message 属性绑定到一起。
+
+
+<br><br>================================<br><br>
+<h2>【条件与循环】</h2>
+
+<h4>v-if 指令</h4>
+
+控制切换一个元素的显示也相当简单：
+<div id="app-3">
+  <p v-if="seen">现在你看到我了 Now you see me</p>
+</div>
+
+<script>
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+</script>
+<!--继续在控制台设置 app3.seen = false，你会发现 “Now you see me” 消失了。-->
+
+
+<h4>v-for 指令</h4>
+
+可以绑定数组的数据来渲染一个项目列表：
+<div id="app-4">
+  <ol>
+    <li v-for="item in todos">
+      {{ item.text }}
+    </li>
+  </ol>
+</div>
+<script>
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
+  }
+})
+</script>
+
+
+
+
+
+<br><br>================================<br><br>
+<h2>【处理用户输入】</h2>
+
+
+<h4>v-on 指令</h4>
+
+为了让用户和你的应用进行交互，我们可以用 v-on 指令添加一个事件监听器。
+
+
+绑定一个监听事件
+-----------------------
+可以用 v-on 指令监听 DOM 事件来触发一些 JavaScript 代码。
+示例：
+<div id="example-1">
+  <button v-on:click="counter += 1">增加 1</button>
+  <p>这个按钮被点击了 {{ counter }} 次。</p>
+</div>
+<script>
+var example1 = new Vue({
+  el: '#example-1',
+  data: {
+    counter: 0
+  }
+})
+</script>
+
+
+
+方法事件处理器
+-----------------------
+v-on 可以接收一个定义的方法来调用。
+示例：
+<div id="example-2">
+  <!-- `greet` 是在下面定义的方法名 -->
+  <button v-on:click="greet">Greet</button>
+</div>
+<script>
+var example2 = new Vue({
+  el: '#example-2',
+  data: {
+    name: 'Vue.js'
+  },
+  // 在 `methods` 对象中定义方法
+  methods: {
+    greet: function (event) {
+      // `this` 在方法里指当前 Vue 实例
+      alert('Hello ' + this.name + '!')
+      // `event` 是原生 DOM 事件
+      alert(event.target.tagName)
+    }
+  }
+})
+// 也可以用 JavaScript 直接调用方法
+//example2.greet() // -> 'Hello Vue.js!'
+</script>
+
+
+
+
+按键修饰符
+-----------------------
+.enter
+.tab
+.delete (捕获 “删除” 和 “退格” 键)
+.esc
+.space
+.up
+.down
+.left
+.right
+
+
+
+
+<h4>v-model 指令</h4>
+轻松实现表单输入和应用状态之间的双向绑定。
+
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+<script>
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>
+
+
+
+
+
+<br><br>================================<br><br>
+<h2>组件化应用构建</h2>
+组件系统是 Vue 的另一个重要概念，因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用。仔细想想，几乎任意类型的应用界面都可以抽象为一个组件树：
+<br><img src="https://cn.vuejs.org/images/components.png" alt="Component Tree" style="width: 500px; max-width: 100%;">
+
+
+
+
+</body>
+</html>

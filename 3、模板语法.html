@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vue 模板语法</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。
+
+在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少。
+
+如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，直接写渲染 (render) 函数，使用可选的 JSX 语法。
+
+
+
+<h2>html模板（插值）</h2>
+
+<h3>文本插值</h3>
+数据绑定最常见的形式就是使用“Mustache”语法 (双大括号) 的文本插值：
+
+<figure>
+  <span>Message: {{ msg }}</span>
+</figure>
+
+<p id="app1">{{msg}}</p>
+
+<script type="text/javascript">
+  new Vue({
+    el: '#app1',
+    data: {
+      msg: 'html模板——文本插值'
+    }
+  });
+</script>
+
+
+<h3>原始 HTML</h3>
+双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML，你需要使用 v-html 指令：
+
+<figure>
+  <p>Using mustaches: {{ rawHtml }}</p>
+  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+</figure>
+
+<p id="app2" v-html="rawHtml"></p>
+
+<script>
+  new Vue({
+    el: '#app2',
+    data: {
+      rawHtml: '<span style="color:red;">html模板——原始的 HTML</span>'
+    }
+  });
+</script>
+
+
+<h3>特性（属性）</h3>
+Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令：
+<figure>
+	<div v-bind:id="dynamicId"></div>
+</figure>
+
+<p id="app3">
+  <span v-bind:cutomId="id">{{message}}</span>
+</p>
+
+<script>
+  //数据
+  let obj3 = {
+    message:"html模板——特性（属性）",
+    id:"123"
+  }
+  //声明式渲染
+  var vm = new Vue({
+    el:"#app3",
+    data:obj3
+  });
+</script>
+
+
+<h3>使用 JavaScript 表达式</h3>
+对于所有的数据绑定，Vue.js 都提供了完全的 JavaScript 表达式支持。
+
+<pre>
+  {{ number + 1 }}
+
+  {{ ok ? 'YES' : 'NO' }}
+
+  {{ message.split('').reverse().join('') }}
+
+  <div v-bind:id="'list-' + id"></div>
+</pre>
+
+
+
+<h2>template 字符串模板</h2>
+template 选项对象的属性
+模板将会 替换 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发插槽。
+根节点只能有一个
+将html结构写在一对script标签中，设置type="x-template"
+
+<!--模板-->
+<div id="app4">
+    <span>miaov ke tang</span>
+</div>
+<script type="x-template" id="temp">
+    <div>
+        hello,{{abc}},
+        <span>miaov.</span>
+    </div>
+</script>
+<script>
+    //数据
+    let obj4 = {
+        html:"<div>hello,miaov</div>",
+        abc:"JamesBang"
+    };
+
+    var vm = new Vue({
+        el:"#app4",
+        data:obj4,
+        template:"#temp"
+    });
+
+</script>
+
+
+
+
+<h2>直接写渲染 (render) 函数</h2>
+Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这就是 render 函数，它比 template 更接近编译器。
+
+该渲染函数接收一个 createElement 方法作为第一个参数用来创建 VNode。
+
+
+<!--模板-->
+<div id="app5"></div>
+<script>
+    //数据
+    let obj = {
+        html:"<div>hello,miaov</div>",
+        abc:1
+    };
+
+    var vm = new Vue({
+        el:"#app5",
+        data:obj,
+        render(createElement){
+            return createElement(
+                "ul",
+                {
+                    class: {
+                        bg:true
+                    },
+                    style:{
+                        fontSize:"20px",
+                        color:"red"
+                    },
+                    attrs:{
+                        abc:"vm"
+                    },
+                    domProps:{
+                        /*innerHTML:"<li>我是html</li>" */
+                    }
+                },
+                [
+                    createElement("li",1),
+                    createElement("li",{ style:{color:"blue"} },2),
+                    createElement("li",3)
+                ]
+            );
+        }
+    });
+
+</script>
+<style type="text/css">
+	.bg{ background: #f5f5f5;}
+</style>
+
+
+
+</body>
+</html>
