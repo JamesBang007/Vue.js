@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vue ajax</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+	{{msg}}
+	<div class="btn" v-on:click="submitForm">按钮</div>
+</div>
+
+
+<script type="text/javascript">
+//如果在其它的组件中，是无法使用 axios 命令的。
+//但如果将 axios 改写为 Vue 的原型属性，就能解决这个问题
+Vue.prototype.$ajax = axios;
+
+var vm = new Vue({
+	el:"#app",
+	data:{
+		msg:"ajax"
+	},
+	// 在 `methods` 对象中定义方法
+  	methods: {
+		submitForm: function (event) {
+			// `this` 在方法里指当前 Vue 实例
+			var that = this;
+			// `event` 是原生 DOM 事件
+			console.log(event.target.tagName)
+			
+			that.$ajax({
+				method: 'get',
+				//url: 'https://wis.qq.com/weather/common?source=xw&weather_type=observe|rise|air&province=四川&city=成都&county=',
+				url:'1.json',
+				data: {
+					
+				}
+			})
+			.then(function(response){
+				console.log(response.data)
+				that.msg = response.data.message;
+			})
+	      
+	      
+	    }		
+	}	
+});
+
+</script>
+
+</body>
+</html>
