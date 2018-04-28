@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> vue + axios</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+var base = 'http://wafer-1253369580.cosgz.myqcloud.com/';
+  //执行 GET 请求
+  axios.get('notepadList.json', {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+	//2
+	axios.get(`notepadList.json`, { params: params })
+
+export const getNotepad = params => {
+	
+	//return axios.get(`http://wafer-1253369580.cosgz.myqcloud.com/notepadList.json`, { params: params });
+	return JSON.parse(axios.get(`http://wafer-1253369580.cosgz.myqcloud.com/notepadList.json`, { params: params }));
+};
+
+</script>
+
+
+
+</body>
+</html>

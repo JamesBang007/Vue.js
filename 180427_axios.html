@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> vue + axios</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
+
+
+<script type="text/javascript">
+var base = '';
+
+//执行 GET 请求
+axios.get('http://wafer-1253369580.cosgz.myqcloud.com/notepadList.json', {
+	params: {
+		ID: 12345
+	}
+})
+.then(function (response) {
+	console.log(response.data);
+})
+.catch(function (error) {
+	console.log(error);
+});
+
+
+//执行 POST 请求
+axios.post('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', {
+	wd: '成都旅游',
+	json: 1
+})
+.then(function (response) {
+	console.log(response);
+})
+.catch(function (error) {
+	console.log(error);
+});
+
+
+/*
+
+//执行多个并发请求
+function getUserAccount() {
+	return axios.get('/user/12345');
+}
+
+function getUserPermissions() {
+	return axios.get('/user/12345/permissions');
+}
+
+axios.all([getUserAccount(), getUserPermissions()])
+	.then(axios.spread(function (acct, perms) {
+	// 两个请求现在都执行完成
+	})
+);
+
+*/
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

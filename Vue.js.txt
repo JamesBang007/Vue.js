@@ -5,5 +5,195 @@ Vue.js 是什么
 Vue.js（读音 /vju?/, 类似于 view） 是一套构建用户界面的 渐进式框架。
 
 
+选项对象
+--------------------------------
+选项 / 数据
+	data			实例的数据对象
+	props			用于接收来自父组件的数据（可以是数组或对象）。
+	propsData		创建实例时传递 props。主要作用是方便测试。
+	computed		计算属性 将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
+	methods			事件处理器 将被混入到 Vue 实例中。
+	watch			一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。
+	
+选项 / DOM
+	el				实例的挂载目标
+	template		一个字符串模板作为 Vue 实例的标识使用。模板将会 替换 挂载的元素。
+	render			字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。
+	renderError
+	
+选项 / 生命周期钩子
+	beforeCreate	在实例初始化之后
+	created			在实例创建完成后被立即调用
+	beforeMount		在挂载开始之前被调用
+	mounted			el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。
+	beforeUpdate	数据更新时调用，发生在虚拟 DOM 打补丁之前。
+	updated			数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。
+	activated
+	deactivated
+	beforeDestroy
+	destroyed
+	errorCaptured
+
+
+
+
+
+
+
+
+
+--------------------------------
+【Vue-cli 脚手架】
+
+Vue提供一个官方命令行工具，可用于快速搭建大型单页应用。该工具为现代化的前端开发工作流提供了开箱即用的构建配置。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
+
+    # 全局安装 vue-cli
+    $ npm install --global vue-cli
+    # 创建一个基于 webpack 模板的新项目
+    $ vue init webpack my-project
+    # 安装依赖，走你
+    $ cd my-project
+    $ npm run dev
+
+
+
+
+--------------------------------
+vue-cli 快速构建vue应用，实现webpack打包
+https://blog.csdn.net/u014182411/article/details/72596722
+
+
+Project description :   项目描述
+Author:                 作者
+Vue build：             打包方式（直接回车就可以）
+
+vue-router
+
+Install ESL TO lint your code?      是否使用ESL代码检测
+Pick an ESLint preset?  standard    (设置编码风格采用stardard 参加(https://github.com/feross/standard)   
+Setup unit tets with Kara + mocha?   是否安装单元测试，我选择安装
+Setup e2e tests with Nightwatc?     是否安装e2e测试 ，我选择安装
+
+进入创建的工程下面：
+cd my-project           这里的my-project是之前输入的项目名
+使用tree命令查看项目目录结构如下：（如果没有tree命令，使用 sudo apt install tree安装）
+
+编译程序
+npm run dev
+
+运行：
+npm run build
+这样就可以将资源文件打包到上面我们设置的文件夹dist/ 中
+
+
+
+--------------------------------
+
+使用组件三部曲：引入组件、注册组件、使用组件
+
+
+import miaov from './components/miaov'
+
+export default {
+  name: 'app',
+  components: {
+    miaov: miaov
+  }
+}
+
+
+
+--------------------------------
+【项目文件】
+
+build			webpack配置目录
+config			配置文件
+src				应用目录
+		assets				静态资源
+		components			公共组件
+		router				路由
+		App.vue				入口组件
+		main.js				入口文件
+
+node_modules	依赖模块
+static			静态资源
+package.json	项目配置
+
+
+组件包含：模版、交互、样式
+
+
+<router-view> 组件是一个 functional 组件，渲染路径匹配到的视图组件。
+<router-view> 渲染的组件还可以内嵌自己的 <router-view>，根据嵌套路径，渲染嵌套组件。
+
+
+
+
+
+
+
+- Component template should contain exactly one root element. If you are using v-if on multiple elements, use v-else-if to chain them instead.
+
+- 组件模板应该只包含一个根元素。 如果您在多个元素上使用v-if，请使用v-else-if来链接它们。
+
+
+
+
+--------------------------------
+vue2.0 $router和$route的区别
+https://blog.csdn.net/zzz_zed/article/details/78885944
+
+做项目的时候发现传参数是通过 this.$route.query 或者 this.$route.params 接收router-link传的参数。
+
+在路由跳转的时候除了用router-link标签以外，需要在script标签在事件里面跳转，所以有个方法就是在script标签里面写this.$router.push('要跳转的路径名')，
+
+在写的时候发现这两个为什么不同，在控制台打出this的时候，发现$route和$router同时存在
+
+$route  为当前router跳转对象里面可以获取name、path、query、params等
+$router 为VueRouter实例，想要导航到不同URL，则使用$router.push方法
+
+返回上一个history也是使用$router.go方法
+
+
+
+
+
+
+170427	vue-router
+--------------------------------
+安装
+NPM
+npm install vue-router
+
+如果在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能：
+
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+
+【开始】
+
+用 Vue.js + vue-router 创建单页应用，是非常简单的。使用 Vue.js ，我们已经可以通过组合组件来组成应用程序，当你要把 vue-router 添加进来，我们需要做的是，将组件(components)映射到路由(routes)，然后告诉 vue-router 在哪里渲染它们。下面是个基本例子：
+
+
+
+
+
+--------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
