@@ -34,15 +34,13 @@ var vm = new Vue({
 			
 			that.$ajax({
 				method: 'get',
-				//url: 'https://wis.qq.com/weather/common?source=xw&weather_type=observe|rise|air&province=四川&city=成都&county=',
-				url:'1.json',
-				data: {
-					
-				}
+				//url:'1.json',
+				url: 'http://jmsbang.com/demo/ajax.php',
+				
 			})
 			.then(function(response){
 				console.log(response.data)
-				that.msg = response.data.message;
+				that.msg = response.data.user;
 			})
 	      
 	      

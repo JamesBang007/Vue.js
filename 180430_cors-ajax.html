@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cors-ajax</title>
+<!--360默认用极速模式-->
+<meta name="renderer" content="webkit">
+</head>
+<body>
+	
+<button id="button">点击按钮返回一张随机图片地址</button>
+
+<div id="result"></div>
+
+
+<script>
+var button = document.getElementById('button');
+var result = document.getElementById('result');
+
+button.addEventListener('click', function () {
+	// 请求方式随机
+	var method = Math.random() > 0.5 ? 'get' : 'post';
+	var xhr = new XMLHttpRequest();
+	xhr.open(method, 'http://jmsbang.com/demo/cors-ajax.php');
+	xhr.onload = function () {
+		result.innerHTML = '<img src="'+ xhr.responseText +'" alt="" />';
+	};
+	xhr.send(null);
+});
+</script>
+
+
+
+CORS（Cross-origin resource sharing） “跨域资源共享”  
+
+
+Firefox 8 发布于 2011 年 11 月 8 日。
+	支持跨域资源共享（CORS，Cross-Origin Resource Sharing），让开发者以一种安全的方式从其他域加载 WebGL 纹理
+
+
+
+
+</body>
+</html>
