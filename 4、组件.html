@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>Vue 组件</title>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
+<style type="text/css">
+body{ line-height: 1.8; font-size: 16px; }
+</style>
 </head>
 <body>
 <h2>什么是组件？</h2>
@@ -18,6 +21,7 @@
 
 
 <h3>全局注册</h3>
+<!--
 我们已经知道，可以通过以下方式创建一个 Vue 实例：
 <pre>
   new Vue({
@@ -25,7 +29,7 @@
     // 选项
   })
 </pre>
-
+-->
 要注册一个全局组件，可以使用 Vue.component(tagName, options)。例如：
 <pre>
   Vue.component('my-component', {
@@ -34,8 +38,9 @@
 </pre>
 
 
-组件在注册之后，便可以作为自定义元素 <my-component></my-component> 在一个实例的模板中使用。注意确保在初始化根实例之前注册组件：
+组件在注册之后，便可以作为自定义元素 < my-component>< /my-component> 在一个实例的模板中使用。注意确保在初始化根实例之前注册组件：
 
+<br>demo:
 <div id="example">
   <my-component></my-component>
 </div>
@@ -53,10 +58,137 @@ new Vue({
 </script>
 
 
+<h3>局部注册</h3>
+你不必把每个组件都注册到全局。你可以通过某个 Vue 实例/组件的实例选项 components 注册仅在其作用域中可用的组件：
+
+<pre>
+var Child = {
+  template: '< div>自定义组件！模版< /div>'
+}
+
+new Vue({
+  // ...
+  components: {
+    // < my-component> 将只在父组件模板中可用
+    'my-component': Child
+  }
+})
+</pre>
+
+这种封装也适用于其它可注册的 Vue 功能，比如指令。
+
+
+
+<h3>DOM 模板解析注意事项</h3>
+当使用 DOM 作为模板时 (例如，使用 el 选项来把 Vue 实例挂载到一个已有内容的元素上)，你会受到 HTML 本身的一些限制，因为 Vue 只有在浏览器解析、规范化模板之后才能获取其内容。尤其要注意，像 < ul>、< ol>、< table>、< select> 这样的元素里允许包含的元素有限制，而另一些像 < option> 这样的元素只能出现在某些特定元素的内部。
+
+
+
+<h3>data 必须是函数</h3>
+构造 Vue 实例时传入的各种选项大多数都可以在组件里使用。只有一个例外：data 必须是函数。实际上，如果你这么做：
+
+<br>demo:
+<div id="example-2">
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+</div>
+
+<script>
+Vue.component('simple-counter', {
+  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+  //data是一个函数，return返回一个对象，传入数据。
+  data: function () {
+    return{
+    	counter: 0
+    }
+  }
+})
+
+new Vue({
+  el: '#example-2'
+})
+</script>
+
+
+
+<h3>组件组合</h3>
+组件设计初衷就是要配合使用的，最常见的就是形成父子组件的关系：组件 A 在它的模板中使用了组件 B。
+它们之间必然需要相互通信：父组件可能要给子组件下发数据，子组件则可能要将它内部发生的事情告知父组件。
+然而，通过一个良好定义的接口来尽可能将父子组件解耦也是很重要的。这保证了每个组件的代码可以在相对隔离的环境中书写和理解，从而提高了其可维护性和复用性。
+
+在 Vue 中，父子组件的关系可以总结为 prop 向下传递，事件向上传递。
+父组件通过 prop 给子组件下发数据，子组件通过事件给父组件发送消息。
+<img style="width: 300px;" src="https://cn.vuejs.org/images/props-events.png" alt="prop 向下传递，事件向上传递">
 
 
 
 
+<h2>Prop</h2>
+
+
+<h3>使用 Prop 传递数据</h3>
+组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中。
+
+<br>子组件要显式地用 props 选项声明它预期的数据：
+
+<pre>
+Vue.component('child', {
+  // 声明 props
+  props: ['message'],
+  // 就像 data 一样，prop 也可以在模板中使用
+  // 同样也可以在 vm 实例中通过 this.message 来使用
+  template: '<span>{{ message }}</span>'
+})
+</pre>
+
+<br>然后我们可以这样向它传入一个普通字符串： 
+<pre>
+	< child message="hello!">< /child>
+</pre>
+
+demo:
+<div id="example-3">	
+	<child message="hello!"></child>
+</div>
+<script>
+Vue.component('child', {
+  // 声明 props
+  props: ['message'],
+  // 就像 data 一样，prop 也可以在模板中使用
+  // 同样也可以在 vm 实例中通过 this.message 来使用
+  template: '<span>{{ message }}</span>'
+})
+
+new Vue({
+  el: '#example-3'
+})
+</script>
+
+
+
+<h3>动态 Prop</h3>
+与绑定到任何普通的 HTML 特性相类似，我们可以用 v-bind 来动态地将 prop 绑定到父组件的数据。每当父组件的数据变化时，该变化也会传导给子组件：
+
+<div id="prop-example-2">
+  <input v-model="parentMsg">
+  <br>
+  <child v-bind:my-message="parentMsg"></child>
+</div>
+<script>
+Vue.component('child', {
+  // 在 JavaScript 中使用 camelCase
+  props: ['myMessage'],
+  template: '<span>{{ myMessage  }}</span>'
+})
+
+new Vue({
+  el: '#prop-example-2',
+  data: {
+    parentMsg: '来自父组件的信息'
+  }
+})
+</script>
 
 
 
